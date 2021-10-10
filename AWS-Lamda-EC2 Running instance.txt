@@ -50,3 +50,5 @@ for instance in instances:
           
     # Upload modified file
     s3_client.upload_file(localFilename, bucket, key)
+    
+    #list resources
