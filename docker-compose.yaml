@@ -1,0 +1,28 @@
+version: '2.9'
+
+services:
+  redis:
+    image: docker.io/bitnami/redis:6.2
+    environment:
+# ALLOW_EMPTY_PASSWORD is recommended only for development.
+ 
+     - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+
+#CPU and memory restrictions settings 
+    deploy:
+      resources:
+        limits:
+          cpus: '0.001'
+          memory: 50M
+        reservations:
+          cpus: '0.0001'
+          memory: 20M
+
+volumes:
+  redis_data:
+    driver: local
